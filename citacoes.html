@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Citações ABNT — Doculy</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/citacoes.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">Doculy</a>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="citacoes.html" class="active">Citações</a>
+      <a href="#">Conversor</a>
+      <a href="#">Modelos</a>
+    </div>
+    <button class="dark-toggle">🌙</button>
+  </nav>
+
+  <!-- CABEÇALHO DA PÁGINA -->
+  <section class="page-header">
+    <h1>Gerador de Citações ABNT</h1>
+    <p>Busque uma obra ou preencha manualmente para gerar sua referência bibliográfica.</p>
+  </section>
+
+  <!-- BUSCA -->
+  <section class="search-section">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Buscar por título, autor ou tema..." />
+      <button id="searchBtn">Buscar</button>
+    </div>
+    <div id="searchResults" class="search-results hidden"></div>
+  </section>
+
+  <!-- SELETOR DE TIPO DE CITAÇÃO -->
+  <section class="citation-types">
+    <h2>Ou preencha manualmente:</h2>
+    <div class="type-buttons">
+      <button class="type-btn active" data-type="livro">📄 Livro</button>
+      <button class="type-btn" data-type="site">🌐 Site</button>
+      <button class="type-btn" data-type="artigo">📰 Artigo</button>
+      <button class="type-btn" data-type="cientifico">📝 Artigo Científico</button>
+      <button class="type-btn" data-type="capitulo">📚 Capítulo de Livro</button>
+      <button class="type-btn" data-type="tcc">🎓 TCC / Dissertação</button>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO DINÂMICO -->
+  <section class="form-section">
+    <div id="citationForm" class="citation-form">
+      <!-- Formulário vai ser gerado pelo JavaScript -->
+    </div>
+
+    <button id="generateBtn" class="btn-primary">Gerar Citação ABNT</button>
+  </section>
+
+  <!-- RESULTADO -->
+  <section id="resultSection" class="result-section hidden">
+    <h2>Sua citação gerada:</h2>
+    <div id="citationResult" class="citation-result"></div>
+    <button id="copyBtn" class="btn-copy">📋 Copiar citação</button>
+  </section>
+
+  <script src="js/main.js"></script>
+  <script src="js/citacoes.js"></script>
+</body>
+</html>
