@@ -233,7 +233,7 @@ async function searchBooks(query) {
 
   try {
     const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=8`
+      `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=8&key=AIzaSyB64KIyq7NEiqrKUIYg-xsz-qEz0Dk2bU8`
     );
     const data = await response.json();
 
