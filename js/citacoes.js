@@ -8,6 +8,8 @@ const forms = {
     { id: 'local', label: 'Local de publicação (cidade)' },
     { id: 'editora', label: 'Editora' },
     { id: 'ano', label: 'Ano de publicação' },
+    { id: 'trecho', label: 'Trecho do autor para citação direta (opcional)' },
+    { id: 'pagina', label: 'Página do trecho (opcional, ex: 45)' },
   ],
   site: [
     { id: 'autor', label: 'Autor(es) ou organização (opcional)' },
