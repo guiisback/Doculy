@@ -102,9 +102,19 @@ function generateCitation(type) {
       const local = get('local');
       const editora = get('editora');
       const ano = get('ano');
+      const trecho = get('trecho');
+      const pagina = get('pagina');
       if (!autor || !titulo || !local || !editora || !ano) return null;
       const edicaoStr = edicao ? ` ${edicao}.` : '';
-      return `${autor}. <strong>${titulo}</strong>.${edicaoStr} ${local}: ${editora}, ${ano}.`;
+      const sobrenome = autor.split(',')[0].trim();
+      const referencia = `${autor}. <strong>${titulo}</strong>.${edicaoStr} ${local}: ${editora}, ${ano}.`;
+      const citacaoTexto = pagina
+        ? `(${sobrenome}, ${ano}, p. ${pagina})`
+        : `(${sobrenome}, ${ano})`;
+      const citacaoDireta = trecho
+        ? `"${trecho}" ${citacaoTexto}`
+        : null;
+      return { referencia, citacaoTexto, citacaoDireta };
     }
 
     case 'site': {
@@ -113,10 +123,17 @@ function generateCitation(type) {
       const site = get('site');
       const url = get('url');
       const acesso = get('acesso');
+      const trecho = get('trecho');
+      const pagina = get('pagina');
       if (!titulo || !url || !acesso) return null;
       const autorStr = autor ? `${autor}. ` : '';
       const siteStr = site ? ` <strong>${site}</strong>.` : '';
-      return `${autorStr}<strong>${titulo}</strong>.${siteStr} Disponível em: ${url}. Acesso em: ${acesso}.`;
+      const sobrenome = autor ? autor.split(',')[0].trim() : 'AUTOR';
+      const ano = acesso.split(' ').pop();
+      const referencia = `${autorStr}<strong>${titulo}</strong>.${siteStr} Disponível em: ${url}. Acesso em: ${acesso}.`;
+      const citacaoTexto = `(${sobrenome}, ${ano})`;
+      const citacaoDireta = trecho ? `"${trecho}" ${citacaoTexto}` : null;
+      return { referencia, citacaoTexto, citacaoDireta };
     }
 
     case 'artigo': {
@@ -128,9 +145,15 @@ function generateCitation(type) {
       const numero = get('numero');
       const paginas = get('paginas');
       const ano = get('ano');
+      const trecho = get('trecho');
+      const pagina = get('pagina');
       if (!autor || !titulo || !revista || !ano) return null;
       const detalhes = [volume, numero, paginas].filter(Boolean).join(', ');
-      return `${autor}. ${titulo}. <strong>${revista}</strong>, ${local ? local + ', ' : ''}${detalhes}${detalhes ? ', ' : ''}${ano}.`;
+      const sobrenome = autor.split(',')[0].trim();
+      const referencia = `${autor}. ${titulo}. <strong>${revista}</strong>, ${local ? local + ', ' : ''}${detalhes}${detalhes ? ', ' : ''}${ano}.`;
+      const citacaoTexto = pagina ? `(${sobrenome}, ${ano}, p. ${pagina})` : `(${sobrenome}, ${ano})`;
+      const citacaoDireta = trecho ? `"${trecho}" ${citacaoTexto}` : null;
+      return { referencia, citacaoTexto, citacaoDireta };
     }
 
     case 'cientifico': {
@@ -142,10 +165,16 @@ function generateCitation(type) {
       const paginas = get('paginas');
       const ano = get('ano');
       const doi = get('doi');
+      const trecho = get('trecho');
+      const pagina = get('pagina');
       if (!autor || !titulo || !revista || !ano) return null;
       const detalhes = [volume, numero, paginas].filter(Boolean).join(', ');
       const doiStr = doi ? ` DOI: ${doi}.` : '';
-      return `${autor}. ${titulo}. <strong>${revista}</strong>, ${detalhes}${detalhes ? ', ' : ''}${ano}.${doiStr}`;
+      const sobrenome = autor.split(',')[0].trim();
+      const referencia = `${autor}. ${titulo}. <strong>${revista}</strong>, ${detalhes}${detalhes ? ', ' : ''}${ano}.${doiStr}`;
+      const citacaoTexto = pagina ? `(${sobrenome}, ${ano}, p. ${pagina})` : `(${sobrenome}, ${ano})`;
+      const citacaoDireta = trecho ? `"${trecho}" ${citacaoTexto}` : null;
+      return { referencia, citacaoTexto, citacaoDireta };
     }
 
     case 'capitulo': {
@@ -158,10 +187,16 @@ function generateCitation(type) {
       const editora = get('editora');
       const ano = get('ano');
       const paginas = get('paginas');
+      const trecho = get('trecho');
+      const pagina = get('pagina');
       if (!autor || !titulo || !livro || !local || !editora || !ano) return null;
       const edicaoStr = edicao ? ` ${edicao}.` : '';
       const orgStr = organizador ? ` In: ${organizador} (org.).` : ' In:';
-      return `${autor}. ${titulo}.${orgStr} <strong>${livro}</strong>.${edicaoStr} ${local}: ${editora}, ${ano}. ${paginas}.`;
+      const sobrenome = autor.split(',')[0].trim();
+      const referencia = `${autor}. ${titulo}.${orgStr} <strong>${livro}</strong>.${edicaoStr} ${local}: ${editora}, ${ano}. ${paginas}.`;
+      const citacaoTexto = pagina ? `(${sobrenome}, ${ano}, p. ${pagina})` : `(${sobrenome}, ${ano})`;
+      const citacaoDireta = trecho ? `"${trecho}" ${citacaoTexto}` : null;
+      return { referencia, citacaoTexto, citacaoDireta };
     }
 
     case 'tcc': {
@@ -173,9 +208,15 @@ function generateCitation(type) {
       const local = get('local');
       const ano = get('ano');
       const paginas = get('paginas');
+      const trecho = get('trecho');
+      const pagina = get('pagina');
       if (!autor || !titulo || !tipo || !instituicao || !local || !ano) return null;
       const paginasStr = paginas ? ` ${paginas}.` : '';
-      return `${autor}. <strong>${titulo}</strong>. ${ano}.${paginasStr} ${tipo} (${curso}) — ${instituicao}, ${local}, ${ano}.`;
+      const sobrenome = autor.split(',')[0].trim();
+      const referencia = `${autor}. <strong>${titulo}</strong>. ${ano}.${paginasStr} ${tipo} (${curso}) — ${instituicao}, ${local}, ${ano}.`;
+      const citacaoTexto = pagina ? `(${sobrenome}, ${ano}, p. ${pagina})` : `(${sobrenome}, ${ano})`;
+      const citacaoDireta = trecho ? `"${trecho}" ${citacaoTexto}` : null;
+      return { referencia, citacaoTexto, citacaoDireta };
     }
 
     default:
@@ -286,8 +327,6 @@ document.getElementById('searchInput').addEventListener('keydown', e => {
     if (query) searchBooks(query);
   }
 });
-
-// Gerar citação
 document.getElementById('generateBtn').addEventListener('click', () => {
   const citation = generateCitation(currentType);
   const resultSection = document.getElementById('resultSection');
@@ -298,7 +337,31 @@ document.getElementById('generateBtn').addEventListener('click', () => {
     return;
   }
 
-  resultDiv.innerHTML = citation;
+  // Se retornou objeto com referencia e citação
+  if (typeof citation === 'object') {
+    let html = `
+      <div class="citation-block">
+        <span class="citation-label">📚 Referência bibliográfica</span>
+        <p>${citation.referencia}</p>
+      </div>
+      <div class="citation-block">
+        <span class="citation-label">💬 Citação no texto</span>
+        <p>${citation.citacaoTexto}</p>
+      </div>
+    `;
+    if (citation.citacaoDireta) {
+      html += `
+        <div class="citation-block">
+          <span class="citation-label">✏️ Citação direta</span>
+          <p>${citation.citacaoDireta}</p>
+        </div>
+      `;
+    }
+    resultDiv.innerHTML = html;
+  } else {
+    resultDiv.innerHTML = citation;
+  }
+
   resultSection.classList.remove('hidden');
   resultSection.scrollIntoView({ behavior: 'smooth' });
 });

@@ -229,3 +229,38 @@
   color: var(--primary);
   font-weight: 700;
 }
+/* ===== BLOCOS DE CITAÇÃO ===== */
+.citation-block {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.citation-block:first-child {
+  border-left: 4px solid var(--primary);
+}
+
+.citation-block:nth-child(2) {
+  border-left: 4px solid #10b981;
+}
+
+.citation-block:nth-child(3) {
+  border-left: 4px solid #f59e0b;
+}
+
+.citation-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.citation-block p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
