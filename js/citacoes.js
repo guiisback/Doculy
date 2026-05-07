@@ -27,6 +27,8 @@ const forms = {
     { id: 'numero', label: 'Número (ex: n. 2)' },
     { id: 'paginas', label: 'Páginas (ex: p. 45-60)' },
     { id: 'ano', label: 'Ano de publicação' },
+    { id: 'trecho', label: 'Trecho do autor para citação direta (opcional)' },
+    { id: 'pagina', label: 'Página do trecho (opcional, ex: 45)' },
   ],
   cientifico: [
     { id: 'autor', label: 'Autor(es) (ex: SILVA, João)' },
@@ -37,6 +39,8 @@ const forms = {
     { id: 'paginas', label: 'Páginas (ex: p. 45-60)' },
     { id: 'ano', label: 'Ano de publicação' },
     { id: 'doi', label: 'DOI (opcional)' },
+    { id: 'trecho', label: 'Trecho do autor para citação direta (opcional)' },
+    { id: 'pagina', label: 'Página do trecho (opcional, ex: 45)' },
   ],
   capitulo: [
     { id: 'autor', label: 'Autor(es) do capítulo' },
@@ -48,6 +52,8 @@ const forms = {
     { id: 'editora', label: 'Editora' },
     { id: 'ano', label: 'Ano de publicação' },
     { id: 'paginas', label: 'Páginas do capítulo (ex: p. 45-60)' },
+    { id: 'trecho', label: 'Trecho do autor para citação direta (opcional)' },
+    { id: 'pagina', label: 'Página do trecho (opcional, ex: 45)' },
   ],
   tcc: [
     { id: 'autor', label: 'Autor (ex: SILVA, João)' },
@@ -58,6 +64,8 @@ const forms = {
     { id: 'local', label: 'Cidade' },
     { id: 'ano', label: 'Ano' },
     { id: 'paginas', label: 'Total de páginas (ex: 120 f.)' },
+    { id: 'trecho', label: 'Trecho do autor para citação direta (opcional)' },
+    { id: 'pagina', label: 'Página do trecho (opcional, ex: 45)' },
   ],
 };
 
