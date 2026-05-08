@@ -1,0 +1,230 @@
+/* ===== FILTROS ===== */
+.filters-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.filter-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background-color: var(--card-bg);
+  color: var(--text);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.filter-btn.active {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* ===== GRID DE MODELOS ===== */
+.modelos-grid {
+  max-width: 900px;
+  margin: 1rem auto 4rem;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.modelo-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.modelo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(26, 115, 232, 0.12);
+  border-color: var(--primary);
+}
+
+.modelo-card .card-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.modelo-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.modelo-card p {
+  font-size: 0.85rem;
+  opacity: 0.65;
+  line-height: 1.5;
+}
+
+.modelo-card .card-emoji {
+  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal {
+  background-color: var(--bg);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 720px;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text);
+  transition: background 0.2s;
+}
+
+.modal-close:hover {
+  background-color: var(--card-bg);
+}
+
+.modal h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  padding-right: 2rem;
+}
+
+.modal > p {
+  font-size: 0.9rem;
+  opacity: 0.65;
+  margin-bottom: 1.5rem;
+}
+
+/* ===== ABAS DO MODAL ===== */
+.modal-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.tab-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: none;
+  color: var(--text);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* ===== CONTEÚDO DAS ABAS ===== */
+.tab-content {
+  display: block;
+}
+
+.tab-content.hidden {
+  display: none;
+}
+
+.modelo-texto {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  margin-bottom: 1rem;
+}
+
+/* ===== FORMULÁRIO GUIADO ===== */
+#guiadoForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+#guiadoForm .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+#guiadoForm label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+#guiadoForm input,
+#guiadoForm textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background-color: var(--card-bg);
+  color: var(--text);
+  outline: none;
+  transition: border 0.2s;
+  font-family: inherit;
+  resize: vertical;
+}
+
+#guiadoForm input:focus,
+#guiadoForm textarea:focus {
+  border-color: var(--primary);
+}

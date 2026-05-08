@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modelos de Redação — Doculy</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/modelos.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">Doculy</a>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="citacoes.html">Citações</a>
+      <a href="#">Conversor</a>
+      <a href="modelos.html" class="active">Modelos</a>
+    </div>
+    <button class="dark-toggle">🌙</button>
+  </nav>
+
+  <!-- CABEÇALHO -->
+  <section class="page-header">
+    <h1>Modelos de Redação</h1>
+    <p>Escolha um modelo por estrutura ou tema e escreva sua redação com mais confiança.</p>
+  </section>
+
+  <!-- FILTROS -->
+  <section class="filters-section">
+    <div class="filter-group">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="estrutura">Por Estrutura</button>
+      <button class="filter-btn" data-filter="tema">Por Tema</button>
+    </div>
+  </section>
+
+  <!-- GRID DE MODELOS -->
+  <section class="modelos-grid" id="modelosGrid">
+    <!-- Gerado pelo JavaScript -->
+  </section>
+
+  <!-- MODAL DO MODELO -->
+  <div class="modal-overlay hidden" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+
+      <!-- ABAS -->
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="pronto">📄 Modelo Pronto</button>
+        <button class="tab-btn" data-tab="guiado">✏️ Modelo Guiado</button>
+      </div>
+
+      <!-- MODELO PRONTO -->
+      <div class="tab-content" id="tab-pronto">
+        <div class="modelo-texto" id="modeloTexto"></div>
+        <button class="btn-copy" id="copyModelo">📋 Copiar modelo</button>
+      </div>
+
+      <!-- MODELO GUIADO -->
+      <div class="tab-content hidden" id="tab-guiado">
+        <div id="guiadoForm"></div>
+        <button class="btn-primary" id="gerarGuiado">Gerar minha redação</button>
+        <div class="modelo-texto hidden" id="guiadoResultado"></div>
+        <button class="btn-copy hidden" id="copyGuiado">📋 Copiar redação</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/modelos.js"></script>
+</body>
+</html>
