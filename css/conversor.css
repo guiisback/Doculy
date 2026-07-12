@@ -1,0 +1,207 @@
+/* ===== UPLOAD ===== */
+.upload-section {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  background-color: var(--card-bg);
+}
+
+.drop-zone.dragover {
+  border-color: var(--primary);
+  background-color: rgba(26, 115, 232, 0.05);
+  transform: scale(1.01);
+}
+
+.drop-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.drop-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.drop-sub {
+  opacity: 0.5;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.drop-formats {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
+/* ===== CONVERSÃO ===== */
+.conversion-section {
+  max-width: 700px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+}
+
+.conversion-section.hidden {
+  display: none;
+}
+
+/* ===== INFO DO ARQUIVO ===== */
+.file-info {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.file-info .file-icon {
+  font-size: 2rem;
+}
+
+.file-info .file-details h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.file-info .file-details p {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* ===== OPÇÕES DE CONVERSÃO ===== */
+.conversion-options {
+  margin-bottom: 1.5rem;
+}
+
+.conversion-options h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  opacity: 0.7;
+}
+
+.options-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.option-btn {
+  padding: 0.6rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.option-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.option-btn.active {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* ===== PREVIEW ===== */
+.preview-section {
+  margin-bottom: 1.5rem;
+}
+
+.preview-section h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  opacity: 0.7;
+}
+
+.preview-box {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.preview-box img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.preview-box table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.preview-box table th,
+.preview-box table td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.preview-box table th {
+  background-color: var(--primary);
+  color: white;
+  font-weight: 600;
+}
+
+.preview-box table tr:nth-child(even) {
+  background-color: rgba(26, 115, 232, 0.05);
+}
+
+/* ===== AÇÕES ===== */
+.convert-action {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-secondary {
+  padding: 0.85rem 1.5rem;
+  background-color: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ===== LOADING ===== */
+.converting {
+  text-align: center;
+  padding: 1rem;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}

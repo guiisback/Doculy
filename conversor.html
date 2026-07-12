@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conversor de Arquivos — Doculy</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/conversor.css" />
+
+  <!-- BIBLIOTECAS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">Doculy</a>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="citacoes.html">Citações</a>
+      <a href="conversor.html" class="active">Conversor</a>
+      <a href="modelos.html">Modelos</a>
+    </div>
+    <button class="dark-toggle">🌙</button>
+  </nav>
+
+  <!-- CABEÇALHO -->
+  <section class="page-header">
+    <h1>Conversor de Arquivos</h1>
+    <p>Converta seus arquivos diretamente no navegador — sem enviar para nenhum servidor.</p>
+  </section>
+
+  <!-- ÁREA DE UPLOAD -->
+  <section class="upload-section">
+    <div class="drop-zone" id="dropZone">
+      <div class="drop-icon">📂</div>
+      <p class="drop-title">Arraste seu arquivo aqui</p>
+      <p class="drop-sub">ou</p>
+      <label for="fileInput" class="btn-primary">Selecionar arquivo</label>
+      <input type="file" id="fileInput" hidden accept=".docx,.md,.txt,.csv,.json,.jpg,.jpeg,.png" multiple />
+      <p class="drop-formats">Formatos aceitos: .docx, .md, .txt, .csv, .json, .jpg, .png</p>
+    </div>
+  </section>
+
+  <!-- ÁREA DE CONVERSÃO -->
+  <section class="conversion-section hidden" id="conversionSection">
+
+    <!-- INFO DO ARQUIVO -->
+    <div class="file-info" id="fileInfo"></div>
+
+    <!-- OPÇÕES DE CONVERSÃO -->
+    <div class="conversion-options" id="conversionOptions">
+      <h2>Converter para:</h2>
+      <div class="options-buttons" id="optionsButtons"></div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="preview-section" id="previewSection">
+      <h2>Preview:</h2>
+      <div class="preview-box" id="previewBox"></div>
+    </div>
+
+    <!-- BOTÃO CONVERTER -->
+    <div class="convert-action">
+      <button class="btn-primary" id="convertBtn" disabled>
+        Selecione um formato acima
+      </button>
+      <button class="btn-secondary" id="resetBtn">🔄 Novo arquivo</button>
+    </div>
+
+  </section>
+
+  <script src="js/main.js"></script>
+  <script src="js/conversor.js"></script>
+</body>
+</html>
