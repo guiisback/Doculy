@@ -95,7 +95,85 @@ fileInput.addEventListener('change', (e) => {
   }
 });
 
-// ===== PROCESSA O ARQUIVO =====
+// ===== PROCESSA MÚLTIPLOS ARQUIVOS =====
+async function processarMultiplosArquivos(files) {
+  // Verifica se todos são imagens
+  const todasImagens = files.every(f => {
+    const ext = f.name.split('.').pop().toLowerCase();
+    return ['jpg', 'jpeg', 'png'].includes(ext);
+  });
+
+  document.querySelector('.upload-section').style.display = 'none';
+  conversionSection.classList.remove('hidden');
+
+  // Info dos arquivos
+  fileInfo.innerHTML = `
+    <div class="file-icon">📁</div>
+    <div class="file-details">
+      <h3>${files.length} arquivos selecionados</h3>
+      <p>${files.map(f => f.name).join(', ')}</p>
+    </div>
+  `;
+
+  // Mostra preview de todos
+  previewBox.innerHTML = '';
+  for (const file of files) {
+    const ext = file.name.split('.').pop().toLowerCase();
+    if (['jpg', 'jpeg', 'png'].includes(ext)) {
+      const url = URL.createObjectURL(file);
+      const img = document.createElement('img');
+      img.src = url;
+      img.style.cssText = 'max-width:100%;margin-bottom:0.5rem;border-radius:8px;';
+      previewBox.appendChild(img);
+    }
+  }
+
+  // Opções de conversão
+  optionsButtons.innerHTML = '';
+
+  if (todasImagens) {
+    // Opção A — PDFs separados
+    const btnSeparados = document.createElement('button');
+    btnSeparados.className = 'option-btn';
+    btnSeparados.textContent = '→ PDFs separados';
+    btnSeparados.addEventListener('click', () => {
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+      btnSeparados.classList.add('active');
+      formatoSelecionado = 'PDF_SEPARADOS';
+      convertBtn.textContent = '⬇️ Converter para PDFs separados';
+      convertBtn.disabled = false;
+    });
+
+    // Opção B — PDF único
+    const btnUnico = document.createElement('button');
+    btnUnico.className = 'option-btn';
+    btnUnico.textContent = '→ PDF único (todas as páginas)';
+    btnUnico.addEventListener('click', () => {
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+      btnUnico.classList.add('active');
+      formatoSelecionado = 'PDF_UNICO';
+      convertBtn.textContent = '⬇️ Converter para PDF único';
+      convertBtn.disabled = false;
+    });
+
+    optionsButtons.appendChild(btnSeparados);
+    optionsButtons.appendChild(btnUnico);
+
+  } else {
+    // Arquivos mistos — converte cada um individualmente
+    const btnIndividual = document.createElement('button');
+    btnIndividual.className = 'option-btn active';
+    btnIndividual.textContent = '→ Converter cada arquivo individualmente';
+    optionsButtons.appendChild(btnIndividual);
+    formatoSelecionado = 'INDIVIDUAL';
+    convertBtn.textContent = '⬇️ Converter todos';
+    convertBtn.disabled = false;
+  }
+
+  // Guarda os arquivos para usar no botão converter
+  arquivoAtual = files;
+  extensaoAtual = 'multiplos';
+}
 async function processarArquivo(file) {
   const nomeArquivo = file.name;
   const extensao = nomeArquivo.split('.').pop().toLowerCase();
@@ -210,15 +288,78 @@ convertBtn.addEventListener('click', async () => {
   convertBtn.disabled = true;
 
   try {
-    await executarConversao(extensaoAtual, formatoSelecionado);
+    // Verifica se são múltiplos arquivos
+    if (extensaoAtual === 'multiplos') {
+      await executarConversaoMultipla(arquivoAtual, formatoSelecionado);
+    } else {
+      await executarConversao(extensaoAtual, formatoSelecionado);
+    }
   } catch (err) {
     alert('Erro ao converter. Tente novamente.');
     console.error(err);
   }
 
-  convertBtn.textContent = `✅ Convertido! Baixar novamente`;
+  convertBtn.textContent = '✅ Convertido! Baixar novamente';
   convertBtn.disabled = false;
 });
+
+// ===== EXECUTA CONVERSÃO DE MÚLTIPLOS ARQUIVOS =====
+async function executarConversaoMultipla(files, formato) {
+  const { jsPDF } = window.jspdf;
+
+  // PDF ÚNICO — todas as imagens em um só PDF
+  if (formato === 'PDF_UNICO') {
+    const doc = new jsPDF();
+    let primeiraPagina = true;
+
+    for (const file of files) {
+      const imgData = await imagemParaBase64(file);
+      const ext = file.name.split('.').pop().toLowerCase();
+      const formato = ext === 'png' ? 'PNG' : 'JPEG';
+
+      if (!primeiraPagina) doc.addPage();
+      doc.addImage(imgData, formato, 10, 10, 190, 0);
+      primeiraPagina = false;
+    }
+
+    doc.save('imagens_combinadas.pdf');
+  }
+
+  // PDFs SEPARADOS — um PDF para cada imagem
+  else if (formato === 'PDF_SEPARADOS') {
+    for (const file of files) {
+      const nomeBase = file.name.replace(/\.[^/.]+$/, '');
+      const imgData = await imagemParaBase64(file);
+      const ext = file.name.split('.').pop().toLowerCase();
+      const formatoImg = ext === 'png' ? 'PNG' : 'JPEG';
+
+      const doc = new jsPDF();
+      doc.addImage(imgData, formatoImg, 10, 10, 190, 0);
+      doc.save(`${nomeBase}.pdf`);
+
+      // Pequena pausa entre downloads
+      await new Promise(r => setTimeout(r, 500));
+    }
+  }
+
+  // INDIVIDUAL — converte cada arquivo pelo seu tipo
+  else if (formato === 'INDIVIDUAL') {
+    for (const file of files) {
+      const ext = file.name.split('.').pop().toLowerCase();
+      const config = conversoes[ext];
+      if (!config) continue;
+
+      // Define o formato de saída padrão para cada tipo
+      const formatoSaida = config.opcoes[0];
+      arquivoAtual = file;
+      extensaoAtual = ext;
+      conteudoArquivo = await file.text();
+      await executarConversao(ext, formatoSaida);
+
+      await new Promise(r => setTimeout(r, 500));
+    }
+  }
+}
 
 // ===== EXECUTA A CONVERSÃO =====
 async function executarConversao(de, para) {
